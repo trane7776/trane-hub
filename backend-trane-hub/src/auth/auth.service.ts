@@ -1,8 +1,8 @@
 import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
+    BadRequestException,
+    Injectable,
+    NotFoundException,
+    UnauthorizedException,
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { UserService } from 'src/user/user.service';
@@ -12,68 +12,69 @@ import { verify } from 'argon2';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private prisma: PrismaService,
-    private userService: UserService,
-    private jwt: JwtService,
-  ) {}
+    constructor(
+        private prisma: PrismaService,
+        private userService: UserService,
+        private jwt: JwtService,
+    ) {}
 
-  async register(dto: AuthDto) {
-    const oldUser = await this.userService.getByEmail(dto.email);
-    if (oldUser) {
-      throw new BadRequestException(
-        'Пользователь с таким email уже существует',
-      );
+    async register(dto: AuthDto) {
+        const oldUser = await this.userService.getByEmail(dto.email);
+        if (oldUser) {
+            throw new BadRequestException(
+                'Пользователь с таким email уже существует',
+            );
+        }
+
+        const user = await this.userService.create(dto);
+
+        const tokens = this.issueTokens(user.id);
+
+        return { user, ...tokens };
     }
 
-    const user = await this.userService.create(dto);
+    async login(dto: AuthDto) {
+        const user = await this.validateUser(dto);
 
-    const tokens = this.issueTokens(user.id);
+        const tokens = this.issueTokens(user.id);
 
-    return { user, ...tokens };
-  }
+        return { user, ...tokens };
+    }
 
-  async login(dto: AuthDto) {
-    const user = await this.validateUser(dto);
+    async getNewTokens(refreshToken: string) {
+        const result = await this.jwt.verify(refreshToken);
+        if (!result) throw new UnauthorizedException('Неверный refresh токен');
 
-    const tokens = this.issueTokens(user.id);
+        const user = await this.userService.getById(result.id);
 
-    return { user, ...tokens };
-  }
+        const tokens = this.issueTokens(user.id);
 
-  async getNewTokens(refreshToken: string) {
-    const result = await this.jwt.verify(refreshToken);
-    if (!result) throw new UnauthorizedException('Неверный refresh токен');
+        return { user, ...tokens };
+    }
 
-    const user = await this.userService.getById(result.id);
+    private issueTokens(userId: string) {
+        const data = { id: userId };
 
-    const tokens = this.issueTokens(user.id);
+        const accessToken = this.jwt.sign(data, {
+            expiresIn: '1h',
+        });
 
-    return { user, ...tokens };
-  }
+        const refreshToken = this.jwt.sign(data, {
+            expiresIn: '30d',
+        });
 
-  private issueTokens(userId: string) {
-    const data = { id: userId };
+        return { accessToken, refreshToken };
+    }
 
-    const accessToken = this.jwt.sign(data, {
-      expiresIn: '1h',
-    });
+    private async validateUser(dto: AuthDto) {
+        const user = await this.userService.getByEmail(dto.email);
+        if (!user) throw new NotFoundException('Пользователь не найден');
 
-    const refreshToken = this.jwt.sign(data, {
-      expiresIn: '30d',
-    });
+        const isValidPassword = await verify(user.password, dto.password);
 
-    return { accessToken, refreshToken };
-  }
+        if (!isValidPassword)
+            throw new UnauthorizedException('Неверный пароль');
 
-  private async validateUser(dto: AuthDto) {
-    const user = await this.userService.getByEmail(dto.email);
-    if (!user) throw new NotFoundException('Пользователь не найден');
-
-    const isValidPassword = await verify(user.password, dto.password);
-
-    if (!isValidPassword) throw new UnauthorizedException('Неверный пароль');
-
-    return user;
-  }
+        return user;
+    }
 }

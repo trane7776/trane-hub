@@ -10,6 +10,16 @@ import { FileModule } from './file/file.module';
 import { StatisticsModule } from './statistics/statistics.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule, GenreModule, ActorModule, ReviewModule, MovieModule, FileModule, StatisticsModule],
+    imports: [
+        ConfigModule.forRoot(),
+        AuthModule,
+        UserModule,
+        GenreModule,
+        ActorModule,
+        ReviewModule,
+        MovieModule,
+        FileModule,
+        StatisticsModule,
+    ],
 })
 export class AppModule {}
