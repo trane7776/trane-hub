@@ -24,13 +24,13 @@ export class GenreController {
         return this.genreService.getAll(searchTerm);
     }
 
-    @Get(':slug')
+    @Get('by-slug/:slug')
     async getBySlug(@Param('slug') slug: string) {
         return this.genreService.getBySlug(slug);
     }
 
     // Запросы для админа
-    @Get(':id')
+    @Get('by-id/:id')
     @Auth('admin')
     async getById(@Param('id') id: string) {
         return this.genreService.getById(id);
