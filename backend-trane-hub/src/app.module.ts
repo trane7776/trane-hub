@@ -8,10 +8,13 @@ import { ReviewModule } from './review/review.module';
 import { MovieModule } from './movie/movie.module';
 import { FileModule } from './file/file.module';
 import { StatisticsModule } from './statistics/statistics.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
     imports: [
-        ConfigModule.forRoot(),
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
         AuthModule,
         UserModule,
         GenreModule,
@@ -20,6 +23,7 @@ import { StatisticsModule } from './statistics/statistics.module';
         MovieModule,
         FileModule,
         StatisticsModule,
+        PaymentModule,
     ],
 })
 export class AppModule {}
