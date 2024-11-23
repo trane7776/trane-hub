@@ -36,7 +36,6 @@ export class GenreController {
         return this.genreService.getById(id);
     }
 
-    @UsePipes(new ValidationPipe())
     @Post()
     @Auth('admin')
     async create() {
