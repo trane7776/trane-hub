@@ -1,0 +1,30 @@
+import { axiosWithAuth } from '@/api/interceptors';
+import { API_URL } from '@/app/config/api.config';
+import { IReview } from '@/types/review.types';
+
+type TypeData = {
+    rating: number;
+    text: string;
+};
+
+class ReviewService {
+    async getAll() {
+        const { data } = await axiosWithAuth.get<IReview[]>(
+            API_URL.reviews('')
+        );
+        return data;
+    }
+
+    async leave(movieId: string, data: TypeData) {
+        return axiosWithAuth.post<IReview>(
+            API_URL.reviews(`/leave/${movieId}`),
+            data
+        );
+    }
+
+    async delete(id: string) {
+        return axiosWithAuth.delete<IReview>(API_URL.reviews(`/${id}`));
+    }
+}
+
+export const reviewService = new ReviewService();
