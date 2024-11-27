@@ -4,6 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Auth.module.scss';
 import { Heading } from '@/components/ui/heading/Heading';
 import { IAuthForm } from '@/types/auth.types';
+import { AuthFields } from './Auth.fields';
+import { Button } from '@/components/ui/form-elements/button/Button';
 interface Props {
     className?: string;
 }
@@ -14,7 +16,7 @@ export const Auth: React.FC<Props> = ({ className }) => {
         handleSubmit,
         formState: { errors },
         reset,
-    } = useForm({
+    } = useForm<IAuthForm>({
         mode: 'onChange',
     });
 
@@ -29,6 +31,16 @@ export const Auth: React.FC<Props> = ({ className }) => {
                 <Heading>
                     {isLoginForm ? 'войти в аккаунт' : 'регистрация'}
                 </Heading>
+                <form onSubmit={() => handleSubmit(onSubmit)}>
+                    <AuthFields
+                        register={register}
+                        errors={errors}
+                        isLoginForm={isLoginForm}
+                    />
+                    <Button className={styles.button}>
+                        {isLoginForm ? 'войти' : 'создать аккаунт'}
+                    </Button>
+                </form>
             </div>
             <div className={styles.right}>
                 <img
