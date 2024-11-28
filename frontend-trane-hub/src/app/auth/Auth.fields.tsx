@@ -54,6 +54,7 @@ export const AuthFields: React.FC<Props> = ({
                         message: 'пароль должен быть не менее 6 символов',
                     },
                 })}
+                type="password"
                 placeholder="пароль"
                 error={errors.password}
             />

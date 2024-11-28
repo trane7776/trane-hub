@@ -6,6 +6,7 @@ import { Heading } from '@/components/ui/heading/Heading';
 import { IAuthForm } from '@/types/auth.types';
 import { AuthFields } from './Auth.fields';
 import { Button } from '@/components/ui/form-elements/button/Button';
+import { useAuthMutation } from './useAuthMutation';
 interface Props {
     className?: string;
 }
@@ -21,17 +22,17 @@ export const Auth: React.FC<Props> = ({ className }) => {
     });
 
     const [isLoginForm, setIsLogin] = React.useState(true);
-
+    const { mutate } = useAuthMutation(isLoginForm, reset);
     const onSubmit: SubmitHandler<IAuthForm> = (data) => {
-        console.log(data);
+        mutate(data);
     };
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
-                <Heading>
+                <Heading className={styles.heading}>
                     {isLoginForm ? 'войти в аккаунт' : 'регистрация'}
                 </Heading>
-                <form onSubmit={() => handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <AuthFields
                         register={register}
                         errors={errors}
@@ -40,6 +41,18 @@ export const Auth: React.FC<Props> = ({ className }) => {
                     <Button className={styles.button}>
                         {isLoginForm ? 'войти' : 'создать аккаунт'}
                     </Button>
+                    <div className={styles.toggle}>
+                        {isLoginForm ? 'нет аккаунта? ' : 'есть аккаунт? '}
+                        <button
+                            type="button"
+                            className="text-primary hover:text-red-900 transition-colors"
+                            onClick={() => {
+                                setIsLogin(!isLoginForm);
+                            }}
+                        >
+                            {isLoginForm ? 'зарегистрируйтесь' : 'войдите'}
+                        </button>
+                    </div>
                 </form>
             </div>
             <div className={styles.right}>

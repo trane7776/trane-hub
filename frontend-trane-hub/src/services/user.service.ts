@@ -18,6 +18,18 @@ class UserService {
         return response;
     }
 
+    async getProfileForMiddleware(accessToken?: string) {
+        const response = await axiosWithAuth.get<IUser>(
+            API_URL.users('/profile'),
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+        return response;
+    }
+
     async toggleFavorite(movieId: string) {
         return axiosWithAuth.post(API_URL.users('/profile/favorites'), {
             movieId,
