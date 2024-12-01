@@ -1,0 +1,14 @@
+.wrapper {
+    @apply h-[100vh] flex gap-y-4 items-center w-full;
+
+    > .area {
+        @apply flex flex-col items-center gap-y-4 w-full;
+        > h1 {
+            @apply text-3xl font-bold;
+        }
+
+        > .link {
+            @apply border-b border-b-transparent hover:border-white transition-colors;
+        }
+    }
+}

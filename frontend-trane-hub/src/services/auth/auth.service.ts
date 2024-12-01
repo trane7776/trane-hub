@@ -1,5 +1,5 @@
 import { axiosClassic } from '@/api/interceptors';
-import { API_URL } from '@/app/config/api.config';
+import { API_URL } from '@/config/api.config';
 import { IAuthForm, IAuthResponse } from '@/types/auth.types';
 import { EnumTokens, saveTokensStorage } from './auth-token.service';
 import Cookies from 'js-cookie';

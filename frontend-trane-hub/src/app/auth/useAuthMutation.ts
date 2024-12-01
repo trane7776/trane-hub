@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { UseFormReset } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { DASHBOARD_URL } from '../config/url.config';
+import { DASHBOARD_URL } from '@/config/url.config';
 
 export const useAuthMutation = (
     isLoginForm: boolean,

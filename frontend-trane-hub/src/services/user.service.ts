@@ -1,5 +1,5 @@
 import { axiosWithAuth } from '@/api/interceptors';
-import { API_URL } from '@/app/config/api.config';
+import { API_URL } from '@/config/api.config';
 import { IUser, IUserEditInput } from '@/types/user.types';
 
 class UserService {

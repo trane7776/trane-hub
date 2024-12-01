@@ -1,5 +1,5 @@
 import { axiosClassic, axiosWithAuth } from '@/api/interceptors';
-import { API_URL } from '@/app/config/api.config';
+import { API_URL } from '@/config/api.config';
 import { IActor, IActorEditInput } from '@/types/actor.types';
 
 class ActorService {

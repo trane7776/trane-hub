@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { EnumTokens, getAccessToken } from './services/auth/auth-token.service';
-import { ADMIN_URL, DASHBOARD_URL, PUBLIC_URL } from './app/config/url.config';
+import { ADMIN_URL, DASHBOARD_URL, PUBLIC_URL } from './config/url.config';
 import { userService } from './services/user.service';
 import { UserRole } from './types/user.types';
 

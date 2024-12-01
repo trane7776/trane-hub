@@ -1,5 +1,5 @@
 import { axiosWithAuth } from '@/api/interceptors';
-import { API_URL } from '@/app/config/api.config';
+import { API_URL } from '@/config/api.config';
 import { IPayment, IPaymentResponse } from '@/types/payment.types';
 
 class PaymentService {
