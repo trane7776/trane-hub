@@ -45,7 +45,7 @@ export const Auth: React.FC<Props> = ({ className }) => {
                         {isLoginForm ? 'нет аккаунта? ' : 'есть аккаунт? '}
                         <button
                             type="button"
-                            className="text-primary hover:text-red-900 transition-colors"
+                            className="text-primary hover:opacity-85 transition-opacity"
                             onClick={() => {
                                 setIsLogin(!isLoginForm);
                             }}
