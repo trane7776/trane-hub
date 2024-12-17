@@ -12,7 +12,7 @@ interface Props {
 
 const font = Poppins({
     subsets: ['latin'],
-    weight: ['400', '500', '600', '700'],
+    weight: ['600'],
 });
 
 export const Logo: React.FC<Props> = ({ className }) => {
