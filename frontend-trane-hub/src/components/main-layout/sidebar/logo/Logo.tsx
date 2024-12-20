@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import styles from './Logo.module.scss';
@@ -5,7 +6,7 @@ import Link from 'next/link';
 import { Poppins } from 'next/font/google';
 import { PUBLIC_URL } from '@/config/url.config';
 import { cn } from '@/lib/utils';
-
+import { HandySvg } from 'handy-svg';
 interface Props {
     className?: string;
 }
@@ -18,12 +19,11 @@ const font = Poppins({
 export const Logo: React.FC<Props> = ({ className }) => {
     return (
         <Link href={PUBLIC_URL.home()} className={cn(className, styles.logo)}>
-            <img
-                className="fill-primary"
+            <HandySvg
                 src="/images/logo.svg"
-                alt="TraneHub"
-                width={50}
-                height={50}
+                className="fill-primary"
+                width="50"
+                height="50"
             />
             <div
                 className={cn(
