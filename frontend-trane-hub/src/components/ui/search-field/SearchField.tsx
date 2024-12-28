@@ -3,6 +3,7 @@ import React, { ChangeEvent } from 'react';
 
 import styles from './SearchField.module.scss';
 import { Icon } from '../Icon';
+
 interface Props {
     className?: string;
     searchTerm: string;
