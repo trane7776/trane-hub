@@ -9,13 +9,14 @@ export class MovieService {
     constructor(private prisma: PrismaService) {}
 
     async getAll(searchTerm?: string) {
-        if (searchTerm) this.search(searchTerm);
-        return this.prisma.movie.findMany({
-            select: returnMovieObject,
-            orderBy: {
-                createdAt: 'desc',
-            },
-        });
+        if (searchTerm) return this.search(searchTerm);
+        else
+            return this.prisma.movie.findMany({
+                select: returnMovieObject,
+                orderBy: {
+                    createdAt: 'desc',
+                },
+            });
     }
 
     private async search(searchTerm: string) {
