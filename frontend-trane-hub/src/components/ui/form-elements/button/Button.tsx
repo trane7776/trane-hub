@@ -17,8 +17,8 @@ export const Button: React.FC<IButton> = ({
             className={cn(
                 styles.button,
                 className,
-                size === 'sm' && 'rounded-lg px-4',
-                size === 'md' && 'text-sm rounded-md',
+                size === 'md' && 'rounded-lg px-4',
+                size === 'sm' && 'text-sm rounded-md',
                 {
                     [styles.default]: variant === 'default',
                     [styles.outline]: variant === 'outline',

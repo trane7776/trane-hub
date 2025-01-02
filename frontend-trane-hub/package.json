@@ -30,6 +30,7 @@
         "react-select": "^5.8.3",
         "react-simple-star-rating": "^5.1.7",
         "react-transition-group": "^4.4.5",
+        "react-use": "^17.6.0",
         "recharts": "^2.13.3",
         "sass": "^1.81.0"
     },

@@ -22,5 +22,6 @@ export const useSearch = () => {
         handleSearch,
         data,
         searchTerm,
+        setSearchTerm,
     };
 };
