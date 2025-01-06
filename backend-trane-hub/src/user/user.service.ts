@@ -76,6 +76,8 @@ export class UserService {
                             contains: searchTerm,
                             mode: 'insensitive',
                         },
+                    },
+                    {
                         email: {
                             contains: searchTerm,
                             mode: 'insensitive',

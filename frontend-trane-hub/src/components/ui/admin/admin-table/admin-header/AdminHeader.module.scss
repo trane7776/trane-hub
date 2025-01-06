@@ -1,0 +1,7 @@
+.header {
+    @apply flex items-center justify-between mt-6;
+
+    > button {
+        @apply bg-primary/80;
+    }
+}

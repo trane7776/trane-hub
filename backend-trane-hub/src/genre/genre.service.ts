@@ -27,6 +27,8 @@ export class GenreService {
                             contains: searchTerm,
                             mode: 'insensitive',
                         },
+                    },
+                    {
                         description: {
                             contains: searchTerm,
                             mode: 'insensitive',
