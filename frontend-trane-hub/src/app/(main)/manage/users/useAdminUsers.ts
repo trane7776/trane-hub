@@ -16,7 +16,6 @@ export const useAdminUsers = () => {
     const { isLoading, data: users } = useQuery({
         queryKey: ['get users for admin dashboard', debouncedSearch],
         queryFn: () => userService.getAll(debouncedSearch),
-        enabled: !!debouncedSearch,
         select: (data) =>
             data.map(
                 (user): IListItem => ({

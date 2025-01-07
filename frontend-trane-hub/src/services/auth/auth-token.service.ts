@@ -25,6 +25,11 @@ export const removeFromStorage = () => {
 };
 
 export const saveTokensStorage = (data: ITokens) => {
-    Cookies.set(EnumTokens.ACCESS_TOKEN, data.accessToken);
-    Cookies.set(EnumTokens.REFRESH_TOKEN, data.refreshToken);
+    Cookies.set(EnumTokens.ACCESS_TOKEN, data.accessToken, {
+        sameSite: 'Strict', // Запрещает передачу токена в запросах с других сайтов
+    });
+    Cookies.set(EnumTokens.REFRESH_TOKEN, data.refreshToken, {
+        expires: 30,
+        sameSite: 'Strict', // Запрещает передачу токена в запросах с других сайтов
+    });
 };
