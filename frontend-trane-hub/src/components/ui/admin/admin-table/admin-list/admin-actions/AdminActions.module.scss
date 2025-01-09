@@ -4,5 +4,8 @@
     > button {
         @apply border-none bg-transparent text-xl text-primary/80 outline-none
         transition-opacity hover:text-primary;
+        > * {
+            @apply size-[20px];
+        }
     }
 }
