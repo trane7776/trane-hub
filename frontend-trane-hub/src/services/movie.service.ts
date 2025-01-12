@@ -4,7 +4,6 @@ import { IMovie, IMovieEditInput } from '@/types/movie.types';
 
 class MovieService {
     async getAll(searchTerm?: string) {
-        console.log(searchTerm);
         const { data } = await axiosClassic.get<IMovie[]>(API_URL.movies(''), {
             params: searchTerm ? { searchTerm } : {},
         });

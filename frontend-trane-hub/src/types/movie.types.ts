@@ -14,7 +14,7 @@ export interface IMovie {
     genres: IGenre[];
     actors: IActor[];
     reviews: IReview[];
-    countOpened: number;
+    views: number;
     videoUrl: string;
     slug: string;
 }
