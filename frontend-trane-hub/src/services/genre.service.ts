@@ -13,7 +13,7 @@ class GenreService {
 
     async getById(id: string) {
         const response = await axiosWithAuth.get<IGenre>(
-            API_URL.genres(`/${id}`)
+            API_URL.genres(`/by-id/${id}`)
         );
         return response;
     }

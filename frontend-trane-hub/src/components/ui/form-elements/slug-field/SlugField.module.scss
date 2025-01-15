@@ -1,0 +1,5 @@
+.badge {
+    @apply uppercase absolute top-[42px] right-3 cursor-pointer rounded-lg
+    py-0.5 px-2 transition-colors border-zinc-500 bg-zinc-500
+  hover:bg-zinc-500/80 text-zinc-800 text-xs;
+}

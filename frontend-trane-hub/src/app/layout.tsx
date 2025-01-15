@@ -18,6 +18,9 @@ export const metadata: Metadata = {
         siteName: SITE_NAME,
         emails: ['info@tranehub.com'],
     },
+    icons: {
+        icon: '/images/logo.svg',
+    },
 };
 
 export default function RootLayout({
