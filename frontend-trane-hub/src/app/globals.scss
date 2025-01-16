@@ -7,7 +7,9 @@ body {
     @apply bg-zinc-900 text-white;
     height: 100%;
 }
-
+.rdw-option-active {
+    background-color: #4caf50 !important; // Замените на нужный вам цвет
+}
 // Кастомный скроллбар
 ::-webkit-scrollbar {
     width: 10px;

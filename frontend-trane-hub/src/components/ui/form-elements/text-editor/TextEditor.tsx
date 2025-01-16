@@ -4,6 +4,7 @@ import { ITextEditor } from '../form.interface';
 import { ContentState, convertToRaw, EditorState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styles from './TextEditor.module.scss';
 import { cn } from '@/lib/utils';
 import { Editor } from 'react-draft-wysiwyg';

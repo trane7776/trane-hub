@@ -9,23 +9,23 @@
 
     .wrapper {
         .toolbar {
+            // Добавьте стили для активного элемента тулбара с увеличенной специфичностью
+
             @apply mt-2 outline-none rounded-t-lg mb-0 bg-zinc-600
             bg-opacity-40 p-3;
             > div {
                 @apply m-0;
 
                 > div {
-                    @apply outline-none shadow-none transition-colors
+                    @apply outline-none transition-colors shadow-none 
                     border-zinc-500 bg-zinc-500 hover:bg-zinc-300 mx-1.5;
                 }
-            }
-            .active {
-                @apply bg-zinc-300;
             }
         }
         .editor {
             @apply h-80 border rounded-b-lg border-zinc-700 px-4 text-zinc-500
-            overflow-hidden;
+            overflow-hidden hover:cursor-text;
         }
     }
 }
+// Добавьте стили для активного элемента тулбара с увеличенной специфичностью
