@@ -6,7 +6,7 @@ import { getGenresList } from '@/utils/movie/getGenresList';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 
 export const useAdminMovies = () => {
@@ -68,24 +68,13 @@ export const useAdminMovies = () => {
         },
     });
 
-    return useMemo(
-        () => ({
-            handleSearch,
-            searchTerm,
-            movies,
-            isLoading,
-            setSearchTerm,
-            createAsync,
-            deleteAsync,
-        }),
-        [
-            handleSearch,
-            searchTerm,
-            movies,
-            isLoading,
-            setSearchTerm,
-            createAsync,
-            deleteAsync,
-        ]
-    );
+    return {
+        handleSearch,
+        searchTerm,
+        movies,
+        isLoading,
+        setSearchTerm,
+        createAsync,
+        deleteAsync,
+    };
 };

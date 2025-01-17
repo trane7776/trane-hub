@@ -5,7 +5,7 @@ import { actorService } from '@/services/actor.service';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 
 export const useAdminActors = () => {
@@ -63,24 +63,13 @@ export const useAdminActors = () => {
         },
     });
 
-    return useMemo(
-        () => ({
-            handleSearch,
-            searchTerm,
-            actors,
-            isLoading,
-            setSearchTerm,
-            createAsync,
-            deleteAsync,
-        }),
-        [
-            handleSearch,
-            searchTerm,
-            actors,
-            isLoading,
-            setSearchTerm,
-            createAsync,
-            deleteAsync,
-        ]
-    );
+    return {
+        handleSearch,
+        searchTerm,
+        actors,
+        isLoading,
+        setSearchTerm,
+        createAsync,
+        deleteAsync,
+    };
 };

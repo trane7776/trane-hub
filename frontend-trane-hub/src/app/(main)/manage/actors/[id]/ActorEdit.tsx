@@ -11,7 +11,7 @@ import { Field } from '@/components/ui/form-elements/field/Field';
 import { Button } from '@/components/ui/form-elements/button/Button';
 import { SlugField } from '@/components/ui/form-elements/slug-field/SlugField';
 import { generateSlug } from '@/utils/string/generateSlug';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { UploadField } from '@/components/ui/form-elements/upload-field/UploadField';
 
 interface Props {
     className?: string;
@@ -67,9 +67,27 @@ export const ActorEdit: React.FC<Props> = ({ className, actorId }) => {
                                     );
                                 }}
                             />
+                            <Controller
+                                name="photoUrl"
+                                control={control}
+                                render={({
+                                    field: { value, onChange },
+                                    fieldState: { error },
+                                }) => (
+                                    <UploadField
+                                        onChange={onChange}
+                                        value={value}
+                                        error={error}
+                                        folder="actors"
+                                        placeholder="фото"
+                                        className="mt-15 mb-24"
+                                    />
+                                )}
+                                rules={{
+                                    required: 'фото обязательно',
+                                }}
+                            />
                         </div>
-                        {/* Text editor */}
-
                         <Button>сохранить</Button>
                     </>
                 )}
