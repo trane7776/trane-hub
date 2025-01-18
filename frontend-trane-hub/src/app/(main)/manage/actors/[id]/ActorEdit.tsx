@@ -80,7 +80,7 @@ export const ActorEdit: React.FC<Props> = ({ className, actorId }) => {
                                         error={error}
                                         folder="actors"
                                         placeholder="фото"
-                                        className="mt-15 mb-24"
+                                        className="mt-4 mb-24"
                                     />
                                 )}
                                 rules={{

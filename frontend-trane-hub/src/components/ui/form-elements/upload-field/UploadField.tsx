@@ -29,10 +29,8 @@ export const UploadField: React.FC<Props> = ({
                         onChange={uploadImage}
                         className="cursor-pointer"
                     />
-                    {error && (
-                        <div className={styles.error}>{error.message}</div>
-                    )}
                 </label>
+                {error && <div className={styles.error}>{error.message}</div>}
 
                 {isImage && (
                     <div className={styles.upload_image_container}>

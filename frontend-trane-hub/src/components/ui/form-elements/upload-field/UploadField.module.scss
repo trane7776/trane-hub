@@ -30,5 +30,8 @@
                 @apply object-center object-cover rounded-md;
             }
         }
+        .error {
+            @apply text-red-500 font-medium text-sm mb-2;
+        }
     }
 }

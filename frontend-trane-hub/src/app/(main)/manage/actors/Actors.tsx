@@ -32,7 +32,7 @@ export const Actors: React.FC<Props> = ({ className }) => {
             />
             <AdminList
                 listItems={actors || []}
-                headerItems={['имя', 'ссылка']}
+                headerItems={['имя', 'ссылка', 'кол-во фильмов']}
                 isLoading={isLoading}
                 removeHandler={deleteAsync}
             />

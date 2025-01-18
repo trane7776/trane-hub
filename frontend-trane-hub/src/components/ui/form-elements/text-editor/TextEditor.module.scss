@@ -27,5 +27,8 @@
             overflow-hidden hover:cursor-text;
         }
     }
+    .error {
+        @apply text-red-500 font-medium text-sm mb-2;
+    }
 }
 // Добавьте стили для активного элемента тулбара с увеличенной специфичностью
