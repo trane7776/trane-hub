@@ -15,7 +15,6 @@ import { UploadField } from '@/components/ui/form-elements/upload-field/UploadFi
 import { useAdminGenres } from './useAdminGenres';
 import { useAdminActors } from './useAdminActors';
 import { Select } from '@/components/ui/form-elements/select/Select';
-import darkSelectStyles from '@/components/ui/form-elements/select/darkSelectStyles';
 
 interface Props {
     className?: string;
@@ -50,7 +49,7 @@ export const MovieEdit: React.FC<Props> = ({ className, movieId }) => {
     });
     return (
         <div className={cn(className, 'px-6')}>
-            <Heading>настройка актера</Heading>
+            <Heading>настройка фильма</Heading>
             <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
                 {isLoading ? (
                     <div className="space-y-4">

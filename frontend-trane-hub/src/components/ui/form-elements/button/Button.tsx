@@ -10,6 +10,7 @@ export const Button: React.FC<IButton> = ({
     children,
     variant = 'default',
     size = 'md',
+
     ...rest
 }) => {
     return (
