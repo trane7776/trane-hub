@@ -3,6 +3,7 @@ import { IGalleryItemProps } from './gallery.interface';
 import Link from 'next/link';
 import styles from './Gallery.module.scss';
 import { cn } from '@/lib/utils';
+import { Heading } from '../heading/Heading';
 interface Props extends IGalleryItemProps {
     className?: string;
 }
@@ -18,6 +19,18 @@ export const GalleryItem: React.FC<Props> = ({ className, item, variant }) => {
             })}
         >
             <img src={item.poster} alt={item.name} draggable={false} />
+            {item.content && (
+                <div className={styles.content}>
+                    <Heading className={styles.title}>
+                        {item.content.title}
+                    </Heading>
+                    {item.content.subTitle && (
+                        <div className={styles.sub_title}>
+                            {item.content.subTitle}
+                        </div>
+                    )}
+                </div>
+            )}
         </Link>
     );
 };
