@@ -1,3 +1,52 @@
+@import '../../../assets/variables';
+
 .gallery {
     @apply py-3 grid grid-cols-6 gap-3;
+}
+
+.item {
+    @apply relative transition-transform flex items-end rounded-lg
+    overflow-hidden;
+    will-change: transform;
+    &:hover {
+        transform: scale(1.05);
+        border: none;
+    }
+
+    &.vertical {
+        @apply h-72;
+    }
+
+    &.horizontal {
+        @apply h-44 mb-8;
+    }
+
+    &.with_text {
+        @include fade-bg-gradient(0deg);
+
+        &::before {
+            &:hover {
+                transform: scale(1.05);
+                border: none;
+            }
+        }
+    }
+
+    img {
+        @apply object-center object-cover border-none outline-none;
+    }
+
+    .content {
+        @apply absolute bottom-6 left-0 z-20 text-center w-full rounded-lg;
+        @apply px-4;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        .title {
+            @apply text-xl font-semibold text-white;
+        }
+
+        .sub_title {
+            @apply text-zinc-500;
+        }
+    }
 }

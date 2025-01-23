@@ -47,7 +47,7 @@ export class MovieService {
     async getMostPopular() {
         return this.prisma.movie.findMany({
             orderBy: {
-                createdAt: 'desc',
+                views: 'desc',
             },
             include: {
                 actors: true,
