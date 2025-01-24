@@ -25,15 +25,12 @@
         @include fade-bg-gradient(0deg);
 
         &::before {
-            &:hover {
-                transform: scale(1.05);
-                border: none;
-            }
+            @apply rounded-lg;
         }
     }
 
     img {
-        @apply object-center object-cover border-none outline-none;
+        @apply object-center object-cover h-full w-full border-none outline-none;
     }
 
     .content {
