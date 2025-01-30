@@ -20,7 +20,7 @@ export const Reviews: React.FC<Props> = ({ className, reviews, movieId }) => {
     return (
         <div id="reviews" className={cn(className, 'mt-8')}>
             <div className="mb-8">
-                <Heading>Отзывы</Heading>
+                <Heading className="mb-3">отзывы</Heading>
 
                 {user && (
                     <button
