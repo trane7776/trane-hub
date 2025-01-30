@@ -41,9 +41,9 @@ export const Movie: React.FC<Props> = ({
                 Details={() => <Content movie={movie} />}
             />
             <div className="px-6 mb-10">
-                <VideoPlayer />
+                <VideoPlayer videoSource={movie.videoUrl} />
                 <SimilarMovies similarMovies={similarMovies} />
-                <Reviews />
+                <Reviews reviews={movie.reviews} movieId={movie.id} />
             </div>
         </div>
     );
