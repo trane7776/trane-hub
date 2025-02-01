@@ -74,12 +74,44 @@
         }
     }
 
+    .video_container {
+        @apply relative w-full h-full;
+
+        &:fullscreen {
+            @apply bg-black;
+
+            .video {
+                @apply h-screen;
+            }
+
+            .controls {
+                @apply bottom-6;
+            }
+
+            .progress_bar_container {
+                @apply bottom-20;
+            }
+        }
+    }
+
     .progress_bar_container {
-        @apply absolute left-4 right-4 bottom-14 bg-zinc-600 rounded-lg h-1;
+        @apply absolute left-4 right-4 bottom-14 bg-zinc-600 rounded-lg h-1 cursor-pointer;
         width: calc(100% - 2rem);
 
+        &:hover {
+            @apply h-2 transition-all bg-zinc-600/60;
+
+            .progress_bar {
+                @apply h-full;
+            }
+        }
+
         .progress_bar {
-            @apply rounded-2xl h-full bg-primary;
+            @apply rounded-2xl h-full bg-primary transition-all;
+
+            &:hover {
+                @apply bg-primary/60;
+            }
         }
     }
 }

@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { IVideoElement } from './video.interface';
 
+interface IContainerRef extends HTMLDivElement {
+    mozRequestFullScreen?: () => void;
+    webkitRequestFullscreen?: () => void;
+    msRequestFullscreen?: () => void;
+}
+
 export const useVideo = () => {
     const videoRef = useRef<IVideoElement>(null);
+    const containerRef = useRef<IContainerRef>(null);
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -10,6 +17,7 @@ export const useVideo = () => {
     const [progress, setProgress] = useState(0);
     const [volume, setVolume] = useState(100);
     const [isMuted, setIsMuted] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
 
     useEffect(() => {
         if (videoRef.current?.duration) {
@@ -38,19 +46,75 @@ export const useVideo = () => {
         }
     };
 
-    const fullscreen = () => {
-        const video = videoRef.current;
-        if (!video) return;
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) {
-            video.mozRequestFullScreen();
-        } else if (video.webkitRequestFullscreen) {
-            video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) {
-            video.msRequestFullscreen();
+    const toggleFullscreen = () => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        if (!isFullscreen) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.mozRequestFullScreen) {
+                container.mozRequestFullScreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if ((document as any).mozCancelFullScreen) {
+                (document as any).mozCancelFullScreen();
+            } else if ((document as any).webkitExitFullscreen) {
+                (document as any).webkitExitFullscreen();
+            } else if ((document as any).msExitFullscreen) {
+                (document as any).msExitFullscreen();
+            }
         }
     };
+
+    useEffect(() => {
+        const handleFullscreenChange = () => {
+            setIsFullscreen(
+                Boolean(
+                    document.fullscreenElement ||
+                        (document as any).mozFullScreenElement ||
+                        (document as any).webkitFullscreenElement ||
+                        (document as any).msFullscreenElement
+                )
+            );
+        };
+
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener(
+            'mozfullscreenchange',
+            handleFullscreenChange
+        );
+        document.addEventListener(
+            'webkitfullscreenchange',
+            handleFullscreenChange
+        );
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+        return () => {
+            document.removeEventListener(
+                'fullscreenchange',
+                handleFullscreenChange
+            );
+            document.removeEventListener(
+                'mozfullscreenchange',
+                handleFullscreenChange
+            );
+            document.removeEventListener(
+                'webkitfullscreenchange',
+                handleFullscreenChange
+            );
+            document.removeEventListener(
+                'MSFullscreenChange',
+                handleFullscreenChange
+            );
+        };
+    }, []);
 
     const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
@@ -70,6 +134,18 @@ export const useVideo = () => {
                 setVolume(50);
                 videoRef.current.volume = 0.5;
             }
+        }
+    };
+
+    const handleSeek = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const progressBar = e.currentTarget;
+        const clickPosition = e.nativeEvent.offsetX;
+        const progressBarWidth = progressBar.clientWidth;
+        const seekTime = (clickPosition / progressBarWidth) * videoTime;
+
+        if (videoRef.current) {
+            videoRef.current.currentTime = seekTime;
+            setProgress((seekTime / videoTime) * 100);
         }
     };
 
@@ -104,7 +180,7 @@ export const useVideo = () => {
                 }
 
                 case 'f': {
-                    fullscreen();
+                    toggleFullscreen();
                     break;
                 }
 
@@ -121,13 +197,15 @@ export const useVideo = () => {
 
     return {
         videoRef,
+        containerRef,
         actions: {
-            fullscreen,
+            toggleFullscreen,
             rewind,
             fastForward,
             toggleVideo,
             handleVolumeChange,
             toggleMute,
+            handleSeek,
         },
         video: {
             isPlaying,
@@ -136,6 +214,7 @@ export const useVideo = () => {
             progress,
             volume,
             isMuted,
+            isFullscreen,
         },
     };
 };

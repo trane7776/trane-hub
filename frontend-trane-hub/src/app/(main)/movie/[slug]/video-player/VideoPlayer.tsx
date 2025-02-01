@@ -22,7 +22,7 @@ interface Props extends IVideoPlayer {
 }
 
 export const VideoPlayer: React.FC<Props> = ({ className, videoSource }) => {
-    const { actions, video, videoRef } = useVideo();
+    const { actions, video, videoRef, containerRef } = useVideo();
 
     const { user, isLoading } = useProfile();
 
@@ -37,14 +37,17 @@ export const VideoPlayer: React.FC<Props> = ({ className, videoSource }) => {
                     <Loader />
                 </div>
             ) : user?.isHasPremium ? (
-                <>
+                <div ref={containerRef} className={styles.video_container}>
                     <video
                         ref={videoRef}
                         className={styles.video}
                         src={`${videoSource}#t=0.1`}
                         preload="metadata"
                     />
-                    <div className={styles.progress_bar_container}>
+                    <div
+                        className={styles.progress_bar_container}
+                        onClick={actions.handleSeek}
+                    >
                         <div
                             className={styles.progress_bar}
                             style={{ width: `${video.progress}%` }}
@@ -100,12 +103,12 @@ export const VideoPlayer: React.FC<Props> = ({ className, videoSource }) => {
                             </div>
                         </div>
                         <div>
-                            <button onClick={actions.fullscreen}>
+                            <button onClick={actions.toggleFullscreen}>
                                 <MdFullscreen />
                             </button>
                         </div>
                     </div>
-                </>
+                </div>
             ) : (
                 <PremiumPlaceholder />
             )}
