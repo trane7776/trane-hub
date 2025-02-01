@@ -27,22 +27,22 @@ export const VideoPlayer: React.FC<Props> = ({ className, videoSource }) => {
     const { user, isLoading } = useProfile();
 
     return (
-        <div
-            className={cn(className, styles.wrapper, {
-                'h-96': !user?.isHasPremium,
-            })}
-        >
+        <div className={cn(className, styles.wrapper)}>
             {isLoading ? (
                 <div className={styles.loading}>
                     <Loader />
                 </div>
-            ) : user?.isHasPremium ? (
+            ) : (
                 <div ref={containerRef} className={styles.video_container}>
                     <video
                         ref={videoRef}
                         className={styles.video}
                         src={`${videoSource}#t=0.1`}
                         preload="metadata"
+                    />
+                    <div
+                        className={styles.video_overlay}
+                        onClick={actions.toggleVideo}
                     />
                     <div
                         className={styles.progress_bar_container}
@@ -109,8 +109,6 @@ export const VideoPlayer: React.FC<Props> = ({ className, videoSource }) => {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <PremiumPlaceholder />
             )}
         </div>
     );

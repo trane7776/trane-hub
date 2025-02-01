@@ -92,6 +92,16 @@
                 @apply bottom-20;
             }
         }
+
+        .video {
+            @apply w-full;
+        }
+
+        .video_overlay {
+            @apply absolute top-0 left-0 w-full;
+            // Оставляем место для прогресс-бара и контролов
+            height: calc(100% - 100px);
+        }
     }
 
     .progress_bar_container {
