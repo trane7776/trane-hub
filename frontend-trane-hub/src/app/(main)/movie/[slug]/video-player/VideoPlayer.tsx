@@ -11,6 +11,8 @@ import {
     MdPause,
     MdPlayArrow,
     MdUpdate,
+    MdVolumeUp,
+    MdVolumeOff,
 } from 'react-icons/md';
 import { formatVideoTime } from '@/utils/video/formatVideoTime';
 import { PremiumPlaceholder } from './premium-placeholder/PremiumPlaceholder';
@@ -68,6 +70,24 @@ export const VideoPlayer: React.FC<Props> = ({ className, videoSource }) => {
                             <button onClick={actions.fastForward}>
                                 <MdUpdate />
                             </button>
+
+                            <div className={styles.volume_controls}>
+                                <button onClick={actions.toggleMute}>
+                                    {video.isMuted ? (
+                                        <MdVolumeOff />
+                                    ) : (
+                                        <MdVolumeUp />
+                                    )}
+                                </button>
+                                <input
+                                    type="range"
+                                    min={0}
+                                    max={100}
+                                    value={video.volume}
+                                    onChange={actions.handleVolumeChange}
+                                    className={styles.volume_slider}
+                                />
+                            </div>
 
                             <div className={styles.time_controls}>
                                 <p className={styles.controls_time}>

@@ -34,6 +34,44 @@
                 hover:opacity-100 transition-opacity;
             }
         }
+
+        .volume_controls {
+            @apply flex items-center ml-3;
+
+            > button {
+                @apply text-2xl text-white mr-2 opacity-60 hover:opacity-100 transition-opacity;
+            }
+
+            .volume_slider {
+                @apply w-20 cursor-pointer;
+                -webkit-appearance: none;
+                background: rgba(255, 255, 255, 0.2);
+                height: 4px;
+                border-radius: 2px;
+
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    @apply bg-primary;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+
+                &::-moz-range-thumb {
+                    @apply bg-primary;
+                    width: 12px;
+                    height: 12px;
+                    border: none;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
     }
 
     .progress_bar_container {

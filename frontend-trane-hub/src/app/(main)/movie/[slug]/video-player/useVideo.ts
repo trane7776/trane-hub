@@ -8,6 +8,8 @@ export const useVideo = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [videoTime, setVideoTime] = useState(0);
     const [progress, setProgress] = useState(0);
+    const [volume, setVolume] = useState(100);
+    const [isMuted, setIsMuted] = useState(false);
 
     useEffect(() => {
         if (videoRef.current?.duration) {
@@ -47,6 +49,27 @@ export const useVideo = () => {
             video.webkitRequestFullscreen();
         } else if (video.msRequestFullscreen) {
             video.msRequestFullscreen();
+        }
+    };
+
+    const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        setVolume(value);
+        if (videoRef.current) {
+            videoRef.current.volume = value / 100;
+            setIsMuted(value === 0);
+        }
+    };
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            const newMuted = !isMuted;
+            videoRef.current.muted = newMuted;
+            setIsMuted(newMuted);
+            if (!newMuted && volume === 0) {
+                setVolume(50);
+                videoRef.current.volume = 0.5;
+            }
         }
     };
 
@@ -103,12 +126,16 @@ export const useVideo = () => {
             rewind,
             fastForward,
             toggleVideo,
+            handleVolumeChange,
+            toggleMute,
         },
         video: {
             isPlaying,
             currentTime,
             videoTime,
             progress,
+            volume,
+            isMuted,
         },
     };
 };

@@ -35,7 +35,7 @@ async function getContent() {
             link: PUBLIC_URL.movie(movie.slug),
             content: {
                 title: movie.title,
-                subTitle: movie.genres[0].name,
+                subTitle: movie.genres[0]?.name,
             },
         }));
     const dataActors = await actorService.getAll();
