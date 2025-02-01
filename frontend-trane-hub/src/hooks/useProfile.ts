@@ -6,7 +6,9 @@ export const useProfile = () => {
         queryKey: ['profile'],
         queryFn: () => userService.getProfile(),
         select: ({ data }) => data,
+        retry: 1, // Уменьшаем количество повторных попыток
+        refetchOnWindowFocus: false, // Отключаем обновление при фокусе окна
     });
 
-    return { user, isLoading };
+    return { user, isLoading: isLoading && !user };
 };
