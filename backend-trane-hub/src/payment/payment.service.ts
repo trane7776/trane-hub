@@ -60,11 +60,6 @@ export class PaymentService {
     }
 
     async updateStatus(dto: PaymentStatusDto) {
-        if (dto.event === 'payment.waiting_for_capture') {
-            const payment = await yooKassa.capturePayment(dto.object.id);
-            return payment;
-        }
-
         if (dto.event === 'payment.succeeded') {
             const orderId = dto.object.metadata.order_id;
             const userId = dto.object.metadata.user_id;
