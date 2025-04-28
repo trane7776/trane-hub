@@ -35,12 +35,12 @@ services:
     build:
       context: ./frontend-trane-hub
       args:
-        SERVER_URL: http://backend:4200
+        SERVER_URL: http://localhost
         APP_URL: http://localhost
     depends_on:
       - backend
     environment:
-      SERVER_URL: http://backend:4200
+      SERVER_URL: http://localhost
       APP_URL: http://localhost
     ports:
       - "3000:3000"
