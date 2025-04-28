@@ -40,7 +40,8 @@ services:
     depends_on:
       - backend
     environment:
-      SERVER_URL: http://localhost
+      SERVER_URL: http://backend:4200
+      NEXT_PUBLIC_API_URL: http://backend:4200/api
       APP_URL: http://localhost
     ports:
       - "3000:3000"

@@ -1,4 +1,6 @@
-export const SERVER_URL = `${process.env.SERVER_URL}/api` as string;
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
+
+export const SERVER_URL = API_BASE;
 export const API_URL = {
     root: (url = '') => `${url ? url : ''}`,
     auth: (url = '') => API_URL.root(`/auth${url}`),
