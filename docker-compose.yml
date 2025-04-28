@@ -34,6 +34,9 @@ services:
   frontend:
     build:
       context: ./frontend-trane-hub
+      args:
+        SERVER_URL: http://backend:4200
+        APP_URL: http://localhost
     depends_on:
       - backend
     environment:

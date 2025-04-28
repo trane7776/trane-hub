@@ -4,6 +4,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --legacy-peer-deps
 COPY . .
+ARG SERVER_URL
+ARG APP_URL
+ENV SERVER_URL=$SERVER_URL
+ENV APP_URL=$APP_URL
 RUN npm run build
 
 FROM node:20-alpine as runner
