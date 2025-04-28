@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --legacy-peer-deps
 COPY . .
-RUN npx prisma generate
+RUN npx prisma migrate dev --name init
 RUN npm run build
 
 FROM node:20 as runner
