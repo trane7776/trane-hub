@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     title: 'Популярные фильмы',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function TrendingPage() {
     const data = await movieService.getMostPopularMovies();
 

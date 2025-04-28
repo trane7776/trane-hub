@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { movieService } from '@/services/movie.service';
 import { IPageSlugParam, TypeParamSlug } from '@/types/page-params.types';
 import { redirect } from 'next/navigation';

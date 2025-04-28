@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { Catalog } from '@/components/ui/catalog-movies/Catalog';
 import { genreService } from '@/services/genre.service';
 import { movieService } from '@/services/movie.service';

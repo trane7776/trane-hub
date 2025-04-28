@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     title: 'Новые фильмы',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ExplorerPage() {
     const data = await movieService.getAll();
 
