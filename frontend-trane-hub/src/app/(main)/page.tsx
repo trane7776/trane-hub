@@ -12,8 +12,6 @@ export const metadata: Metadata = {
     title: 'Главная',
 };
 
-export const revalidate = 60;
-
 async function getContent() {
     const movies = await movieService.getAll();
 

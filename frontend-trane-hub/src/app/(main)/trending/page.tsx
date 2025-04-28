@@ -6,21 +6,14 @@ export const metadata: Metadata = {
     title: 'Популярные фильмы',
 };
 
-export const revalidate = 60;
-
-async function getMovies() {
-    const data = await movieService.getMostPopularMovies();
-
-    return data;
-}
 export default async function TrendingPage() {
-    const data = await getMovies();
+    const data = await movieService.getMostPopularMovies();
 
     return (
         <div className="px-6">
             <Catalog
-                title="Популярные фильмы"
-                description="Актуальные фильмы и сериалы в хорошем качестве: без смс и регистрации"
+                title="Популярное"
+                description="Самые просматриваемые фильмы и сериалы на TraneHub"
                 movies={data}
             />
         </div>

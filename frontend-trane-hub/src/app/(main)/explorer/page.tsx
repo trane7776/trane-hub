@@ -6,15 +6,8 @@ export const metadata: Metadata = {
     title: 'Новые фильмы',
 };
 
-export const revalidate = 60;
-
-async function getMovies() {
-    const data = await movieService.getAll();
-
-    return data;
-}
 export default async function ExplorerPage() {
-    const data = await getMovies();
+    const data = await movieService.getAll();
 
     return (
         <div className="px-6">
