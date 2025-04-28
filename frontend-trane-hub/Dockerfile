@@ -1,5 +1,5 @@
 # Frontend Dockerfile (Next.js)
-FROM node:20-alpine AS builder
+FROM node:20 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --legacy-peer-deps
@@ -10,7 +10,7 @@ ENV SERVER_URL=$SERVER_URL
 ENV APP_URL=$APP_URL
 RUN npm run build
 
-FROM node:20-alpine as runner
+FROM node:20 as runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=builder /app .
