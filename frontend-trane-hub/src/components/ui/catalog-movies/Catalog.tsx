@@ -19,17 +19,17 @@ export const Catalog: React.FC<Props> = ({
     isLoading = false,
 }) => {
     return (
-        <div className={className}>
-            <Heading className={styles.heading}>{title}</Heading>
+        <div className={className + ' px-2 sm:px-0'}>
+            <Heading className={styles.heading + ' text-lg sm:text-2xl'}>{title}</Heading>
 
             {description && <Description text={description} />}
 
-            <section className={styles.movies}>
+            <section className={styles.movies + ' grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6'}>
                 {isLoading ? (
                     Array.from({ length: 8 }).map((_, index) => (
                         <SkeletonLoader
                             key={index}
-                            className={styles.loading}
+                            className={styles.loading + ' h-32 sm:h-48'}
                         />
                     ))
                 ) : movies?.length ? (
@@ -46,7 +46,7 @@ export const Catalog: React.FC<Props> = ({
                         />
                     ))
                 ) : (
-                    <div className={styles.not_found}>фильмы не найдены</div>
+                    <div className={styles.not_found + ' col-span-full'}>фильмы не найдены</div>
                 )}
             </section>
         </div>

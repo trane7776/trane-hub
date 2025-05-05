@@ -19,15 +19,15 @@ export const Home: React.FC<Props> = ({
     actors,
 }) => {
     return (
-        <div className={className}>
-            {slides.length && <Slider slides={slides} />}
+        <div className={className + ' flex flex-col gap-4'}>
+            {slides.length && <Slider slides={slides} className="mb-2" />}
 
-            <div className="px-6 my-3">
-                <Heading className="text-xl mb-2">в тренде</Heading>
+            <div className="px-2 sm:px-6 my-3">
+                <Heading className="text-lg sm:text-xl mb-2">в тренде</Heading>
                 {trendingMovies.length && <Gallery items={trendingMovies} />}
             </div>
-            <div className="px-6 my-3">
-                <Heading className="text-xl mb-2">лучшие актеры</Heading>
+            <div className="px-2 sm:px-6 my-3">
+                <Heading className="text-lg sm:text-xl mb-2">лучшие актеры</Heading>
                 {actors.length && <Gallery items={actors} />}
             </div>
         </div>

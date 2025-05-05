@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styles from './Sidebar.module.scss';
 import { cn } from '@/lib/utils';
 import { Logo } from './logo/Logo';
@@ -12,12 +11,12 @@ interface Props {
 
 export const Sidebar: React.FC<Props> = ({ className }) => {
     return (
-        <div className={cn(styles.wrapper, className)}>
-            <div className={styles.sidebar}>
+        <aside className={cn(styles.wrapper, className, 'hidden md:block md:w-64 bg-black border-r border-white/10 min-h-screen')}> 
+            <div className={styles.sidebar + ' flex flex-col h-full'}>
                 <Logo />
                 <MenuContainer />
                 <Subscribe />
             </div>
-        </div>
+        </aside>
     );
 };

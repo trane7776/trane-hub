@@ -9,8 +9,8 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }) => {
     return (
-        <div className={cn(className, styles.wrapper)}>
-            <div className={styles.header}>
+        <div className={cn(className, styles.wrapper, 'bg-black/80 backdrop-blur-md border-b border-white/10 md:static fixed top-0 left-0 w-full z-20')}> 
+            <div className={cn(styles.header, 'flex items-center justify-between px-4 py-2 md:px-8 md:py-4')}> 
                 <Search />
                 <UserMenu />
             </div>

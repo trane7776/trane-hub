@@ -22,29 +22,31 @@ export const AdminList: React.FC<Props> = ({
     removeHandler,
 }) => {
     return (
-        <div className={cn(className, 'mb-12')}>
-            <AdminListHeader headerItems={headerItems} />
-            {isLoading ? (
-                <div className={styles.loading}>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <SkeletonLoader className="h-11" />
-                    ))}
-                </div>
-            ) : listItems.length ? (
-                listItems.map((listItem) => (
-                    <AdminListItem
-                        key={listItem.id}
-                        listItem={listItem}
-                        removeHandler={
-                            removeHandler
-                                ? () => removeHandler(listItem.id)
-                                : undefined
-                        }
-                    />
-                ))
-            ) : (
-                <div className={styles.not_found}>список пуст</div>
-            )}
+        <div className={cn(className, 'mb-12 overflow-x-auto')}> {/* добавлен горизонтальный скролл */}
+            <div className="min-w-[500px]">
+                <AdminListHeader headerItems={headerItems} />
+                {isLoading ? (
+                    <div className={styles.loading}>
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <SkeletonLoader className="h-11" key={index} />
+                        ))}
+                    </div>
+                ) : listItems.length ? (
+                    listItems.map((listItem) => (
+                        <AdminListItem
+                            key={listItem.id}
+                            listItem={listItem}
+                            removeHandler={
+                                removeHandler
+                                    ? () => removeHandler(listItem.id)
+                                    : undefined
+                            }
+                        />
+                    ))
+                ) : (
+                    <div className="text-center py-4 text-sm text-white/60">нет данных</div>
+                )}
+            </div>
         </div>
     );
 };

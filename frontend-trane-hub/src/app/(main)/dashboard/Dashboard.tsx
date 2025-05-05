@@ -26,22 +26,22 @@ export const Dashboard: React.FC<Props> = ({ className }) => {
         push(PUBLIC_URL.auth());
     };
     return (
-        <div className="px-6">
-            <div className={styles.wrapper}>
-                <Heading className={styles.heading}>
+        <div className="px-2 sm:px-6">
+            <div className={styles.wrapper + ' flex flex-col items-center gap-4'}>
+                <Heading className={styles.heading + ' text-lg sm:text-2xl'}>
                     привет, {user.name}
                 </Heading>
-                <div className={styles.avatar}>
+                <div className={styles.avatar + ' w-32 h-32 sm:w-44 sm:h-44'}>
                     <img
                         src={user.avatarPath}
                         alt={user.name}
                         width={180}
                         height={180}
-                        className="rounded-md"
+                        className="rounded-md w-full h-full object-cover"
                     />
                 </div>
                 <Button
-                    className={styles.button}
+                    className={styles.button + ' w-full sm:w-auto'}
                     variant="outline"
                     onClick={logout}
                 >

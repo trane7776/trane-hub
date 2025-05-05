@@ -19,7 +19,7 @@ export const Slider: React.FC<Props> = ({ className, slides }) => {
         slides.length
     );
     return (
-        <div className={cn(className, styles.slider)}>
+        <div className={cn(className, styles.slider, 'relative w-full h-40 sm:h-72 flex items-center justify-center overflow-hidden rounded-lg')}> 
             {isPrev && (
                 <SlideArrow
                     variant="left"
